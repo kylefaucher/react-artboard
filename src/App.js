@@ -5,6 +5,10 @@ import Artboard from './Artboard.js';
 class App extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      currentColor: '',
+      currentTool: ''
+    };
   }
 
   render(){
