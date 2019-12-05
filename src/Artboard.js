@@ -16,7 +16,7 @@ class Artboard extends Component{
     return(
       <div>
 
-	      <Stage width={700} height={700}>
+	      <Stage className = "stage" width={700} height={700}>
 	        <Layer>
 	            <Rect
 	                x={10} y={10} width={50} height={50}
