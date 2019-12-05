@@ -6,7 +6,7 @@ class Artboard extends Component{
     super(props);
     this.state = {
     	shapes: [
-    		{shape: 'rectangle', color: 'blue', positionX: '0', , positionY: '0'}
+    		{shape: 'rectangle', color: 'blue', positionX: '0', positionY: '0'}
     	]
     };
   }
