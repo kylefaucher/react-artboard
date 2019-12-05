@@ -15,9 +15,8 @@ class App extends Component{
 
     return(
       <div>
-
+        <h1>ART BOARD</h1>
         <Controls />
-
         <Artboard />
 
       </div>
