@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+h1{
+  margin-top: 0;
+  padding: 2%;
+  background: lightblue;
+}
+.stage{
+  background: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  /*why wont the object center?*/
+  position: absolute;
+  left: 50%;
+  margin-left: -250px;
+}
+.control{
+  align-items: center;
+  margin: 0 auto;
+  height: 300px;
+  width: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 110px;
+  left: 3%;
+  background-color: white;
+  border: 2px solid grey;
+  overflow-x: hidden;
+  padding-top: 15px;
+  border-radius: 8px;
+}
+.control-item{
+  padding-top: 17px;
+  text-align: center;
+  list-style-type: none;
+}
