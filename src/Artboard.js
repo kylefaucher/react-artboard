@@ -64,6 +64,14 @@ function Artboard() {
           );
         })}
       </Layer>
+                <Layer>
+                        <Rect
+                            width={50}
+                            height={50}
+                            fill={'blue'}
+                            shadowBlur={10}
+                        />
+                    </Layer>
 	      </Stage>
       </div>
       );
