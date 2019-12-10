@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { CirclePicker } from 'react-color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faLongArrowAltRight, faSquareFull, faPlay, faCircle, faPen, faSlash, faFont, faImage } from '@fortawesome/free-solid-svg-icons'
+import { faLongArrowAltRight, faSquareFull, faPlay, faCircle, faPen, faSlash, faFont, faImage } from '@fortawesome/free-solid-svg-icons'
 
 class Controls extends Component{
     constructor(props){

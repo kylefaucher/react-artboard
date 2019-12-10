@@ -4,11 +4,6 @@ import {Layer, Rect, Stage} from 'react-konva';
 class Artboard extends Component{
   constructor(props){
     super(props);
-    this.state = {
-    	shapes: [
-    		{shape: 'rectangle', color: 'blue', positionX: '0', positionY: '0'}
-    	]
-    };
   }
 
   render(){

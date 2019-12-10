@@ -60,3 +60,18 @@ h1{
 .triangle{
   transform: rotate(-90deg);
 }
+
+
+.control-item button {
+    -webkit-appearance: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.control-item button:hover{
+  transform: scale(1.2);
+  transition: 0.25s ease;
+}
+
