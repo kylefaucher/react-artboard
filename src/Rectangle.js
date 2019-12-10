@@ -17,8 +17,8 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
   return (
     <React.Fragment>
       <Rect
-        x={10} y={10} width={50} height={50}
-        fill={'blue'}
+        // x={10} y={10} width={50} height={50}
+        // fill={'blue'}
         shadowBlur={10}
         onClick={onSelect}
         ref={shapeRef}
