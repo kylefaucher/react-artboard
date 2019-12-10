@@ -15,7 +15,7 @@ class Controls extends Component{
                     <ul>
                         <li className="control-item"><button><FontAwesomeIcon icon={faLongArrowAltRight} /></button></li>
                         <li className="control-item"><button><FontAwesomeIcon icon={faSquareFull} /></button></li>
-                        <li className="control-item"><button><FontAwesomeIcon className = 'triangle' icon={faPlay} /></button></li>
+                        <li className="control-item"><button><FontAwesomeIcon className = 'triangle' icon={faPlay} onClick={(event)=> this.props.addItem(event, 'triangle')/></button></li>
                         <li className="control-item"><button><FontAwesomeIcon icon={faCircle} /></button></li>
                         <li className="control-item"><button><FontAwesomeIcon icon={faSlash} /></button></li>
                         <li className="control-item"><button><FontAwesomeIcon icon={faPen} /></button></li>
