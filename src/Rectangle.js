@@ -14,9 +14,6 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
     }
   }, [isSelected]);
 
-  const [rectangles, setRectangles] = React.useState([]);
-  const [selectedId, selectShape] = React.useState(null);
-
   return (
     <React.Fragment>
       <Rect
