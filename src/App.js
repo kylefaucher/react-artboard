@@ -10,7 +10,8 @@ class App extends Component{
             currentColor: '',
             currentTool: '',
             shapes: [
-                {shape: '', color: '', positionX: '', positionY: '', id: ''}
+               { shape: 'rect',  fill: 'cyan', x: 10, y: 10, width: 100, height: 100, id: -2},
+               { shape: 'rect',  fill: 'violet', x: 10, y: 10, width: 100, height: 100, id: -1}
             ]
         };
   }
@@ -19,10 +20,12 @@ class App extends Component{
         this.itemID = this.itemID + 1;
         const newShape = Object.assign([], this.state.shapes)
         newShape.push({
-            shape: this.state.shape,
-            color: 'blue',
-            positionX: 0,
-            positionY: 0,
+            shape: shape,
+            fill: 'blue',
+            x: 10,
+            y: 10,
+            width: 100,
+            height: 100,
             id: this.itemID
         })
         this.setState(

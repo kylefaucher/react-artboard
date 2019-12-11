@@ -3,38 +3,11 @@ import { render } from 'react-dom';
 import {Layer, Rect, Stage, Transformer} from 'react-konva';
 import Rectangle from "./Rectangle";
 
-const storeRectangles = [
-  {
-    x: 10,
-    y: 10,
-    width: 100,
-    height: 100,
-    fill: 'red',
-    id: 'rect1'
-  },
-  {
-    x: 150,
-    y: 150,
-    width: 100,
-    height: 100,
-    fill: 'green',
-    id: 'rect2'
-  }
-];
 
-function Artboard() {
+function Artboard(props) {
 
-  const [rectangles, setRectangles] = React.useState(storeRectangles);
+  const [rectangles, setRectangles] = React.useState(props.shapes);
   const [selectedId, selectShape] = React.useState(null);
-  
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //   	shapes: [
-  //   		{shape: 'rectangle', color: 'blue', positionX: '0', positionY: '0'}
-  //   	]
-  //   };
-  // }
 
     return(
       <div>
@@ -64,14 +37,6 @@ function Artboard() {
           );
         })}
       </Layer>
-                <Layer>
-                        <Rect
-                            width={50}
-                            height={50}
-                            fill={'blue'}
-                            shadowBlur={10}
-                        />
-                    </Layer>
 	      </Stage>
       </div>
       );
