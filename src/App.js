@@ -7,13 +7,15 @@ class App extends Component{
         super(props);
         this.itemID = 0;
         this.state = {
-            currentColor: '',
+            currentColor: '#f44336',
             currentTool: '',
             shapes: [
                { shape: 'rect',  fill: 'cyan', x: 10, y: 10, width: 100, height: 100, id: -2},
                { shape: 'rect',  fill: 'violet', x: 10, y: 10, width: 100, height: 100, id: -1}
             ]
         };
+
+        this.handleColorChange = this.handleColorChange.bind(this);
   }
       
     addItem = (event, shape) => {
@@ -21,7 +23,7 @@ class App extends Component{
         const newShape = Object.assign([], this.state.shapes)
         newShape.push({
             shape: shape,
-            fill: 'blue',
+            fill: this.state.currentColor,
             x: 10,
             y: 10,
             width: 100,
@@ -33,12 +35,16 @@ class App extends Component{
         )
     }
 
+    handleColorChange(color, event) {
+        this.setState({currentColor: color.hex});
+    }
+
   render(){
 
     return(
       <div>
         <h1>ART BOARD</h1>
-        <Controls addItem={this.addItem}/>
+        <Controls addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/>
         <Artboard shapes={this.state.shapes}/>
       </div>
       );
