@@ -78,7 +78,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                <h1>ARTBOARD</h1>
+                <h1>artboard.</h1>
                 {/* <Controls addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/> */}
                 <Artboard shapes={this.state.shapes} addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/>
                 {console.log(this.state.shapes)}

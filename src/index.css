@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #061115;
 }
 
 code {
@@ -15,16 +16,18 @@ code {
 h1{
   margin-top: 0;
   padding: 2%;
-  background: lightblue;
+  /*background: lightblue;*/
 }
 .stage{
   background: white;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   border-radius: 8px;
   /*why wont the object center?*/
-  position: absolute;
-  left: 50%;
-  margin-left: -250px;
+  /*position: absolute;*/
+  /*left: 50%;*/
+  /*margin-left: -250px;*/
+  width: 100%;
+  max-width: 700px;
 }
 .control{
   text-align: center;
@@ -32,15 +35,16 @@ h1{
   margin: 0 auto;
   /*height: 300px;*/
   width: 240px;
-  position: fixed;
+  /*position: fixed;*/
   z-index: 1;
-  top: 110px;
-  left: 3%;
+  /*top: 110px;*/
+  /*left: 3%;*/
   background-color: white;
-  border: 2px solid grey;
+  /*border: 2px solid grey;*/
   /*overflow-x: hidden;*/
   padding: 15px;
   border-radius: 8px;
+  margin-left: 100px;
 }
 
 .control ul{
@@ -74,4 +78,60 @@ h1{
   transform: scale(1.2);
   transition: 0.25s ease;
 }
+
+#root>div{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-column-gap: 30px;
+}
+
+#root>div>h1{
+  grid-column: 1/3;
+}
+
+.konvajs-content{
+  width: 100% !important;
+}
+
+.downloadButtons{
+  /*border: solid 2px black;*/
+  background: #f2f2f2;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 680px;
+}
+
+.downloadButtons button, .downloadButtons a{
+  /*background: black;*/
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: 800;
+  text-transform: lowercase;
+  cursor: pointer;
+  background: #061115;
+
+}
+
+h1 {
+    margin-top: 0;
+    padding: 2%;
+    background: #efefef;
+    text-transform: lowercase;
+    letter-spacing: -2px;
+    font-size: 3em;
+    text-align: center;
+}
+
+
+
+
+
 

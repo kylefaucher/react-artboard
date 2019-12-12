@@ -109,6 +109,20 @@ function Artboard(props) {
 
       };
 
+
+  const canvasRef = React.useRef(null);
+
+  var imageURL = '';
+
+  function convertToImage(e){
+    imageURL = canvasRef.current.content.firstChild.toDataURL("image/png");
+  console.log(imageURL);
+
+  var newTab = window.open();
+  newTab.document.body.innerHTML = '<img src="'+ imageURL +'" width="1000px" height="1000px;">';
+
+   }
+
     return(
         <React.Fragment>
         {/* CONTROLLER */}
@@ -129,7 +143,7 @@ function Artboard(props) {
             </div>
         {/* ARTBOARD */}
         <div>
-            <Stage className = "stage" width={700} height={700} onMouseDown={e => {
+            <Stage ref={canvasRef} className = "stage" width={700} height={700} onMouseDown={e => {
                 // deselect when clicked on empty area
                 const clickedOnEmpty = e.target === e.target.getStage();
                 if (clickedOnEmpty) {
@@ -207,6 +221,9 @@ function Artboard(props) {
                     })}
                 </Layer>
             </Stage>
+         <div className = "downloadButtons">
+          <button type = 'button' onClick = {e => {convertToImage(e) }}> Convert to PNG </button>
+        </div>
         </div>
         </React.Fragment>
     );
