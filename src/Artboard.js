@@ -1,158 +1,109 @@
 import React, {Component} from 'react';
-import {Layer, Stage, Transformer} from 'react-konva';
+import Controls from './Controls.js';
+import Artboard from './Artboard.js';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { CirclePicker } from 'react-color';
+import { Layer, Rect, Transformer } from "react-konva";
+import { faLongArrowAltRight, faSquareFull, faPlay, faCircle, faPen, faSlash, faFont, faImage } from '@fortawesome/free-solid-svg-icons';
 import Rectangle from "./shapes/Rectangle";
-import Circle1 from "./shapes/Circle";
-import Arrow1 from "./shapes/Arrow";
-import Line1 from "./shapes/Line";
 
-/*const storeCircles = [
-    {
-        x: 500,
-        y: 300,
-        width: 40,
-        height: 40,
-        fill: 'red',
-        id: 'circ1'
+class App extends Component{
+    constructor(props) {
+        super(props);
+        this.itemID = 0;
+        this.state = {
+            currentColor: '#f44336',
+            currentTool: '',
+            shapes: [
+                {shape: 'rect', fill: 'violet', x: 10, y: 10, width: 100, height: 100, id: -1}
+            ]
+        };
+        this.handleColorChange = this.handleColorChange.bind(this);
     }
-];
-const storeArrows = [
-    {
-        x: 500,
-        y: 80,
-        points: [0, 0, 100, 100],
-        pointerLength: 20,
-        pointerWidth: 20,
-        fill: 'purple',
-        stroke: 'purple',
-        strokeWidth: 4,
-        id: 'arr1'
+
+    addItem = (event, shape) => {
+        this.itemID = this.itemID + 1;
+        const newShape = Object.assign([], this.state.shapes)
+        newShape.push({
+            shape: shape,
+            fill: this.state.currentColor,
+            x: 100,
+            y: 100,
+            width: 10,
+            height: 10,
+            id: this.itemID
+        });
+        /*if((shape === 'rect')||(shape === 'circle')){
+            newShape.push({
+                shape: shape,
+                x: 100,
+                y: 100,
+                width: 10,
+                height: 10,
+                fill: this.state.currentColor,
+                id: this.itemID
+            });
+        }else if(shape === 'arrow'){
+            newShape.push({
+                shape: shape,
+                x: 500,
+                y: 80,
+                points: [0, 0, 100, 100],
+                pointerLength: 20,
+                pointerWidth: 20,
+                fill: this.state.currentColor,
+                stroke: this.state.currentColor,
+                strokeWidth: 4,
+                id: this.itemID
+            });
+        }else if (shape === 'line'){
+            newShape.push({
+                shape: shape,
+                x: 300,
+                y: 100,
+                points: [0, 0, 100, 100],
+                stroke: this.state.currentColor,
+                strokeWidth: 4,
+                id: this.itemID
+            });
+        }*/
+        this.setState(
+            {shapes:newShape}
+        )
+    };
+    handleColorChange(color, event) {
+        this.setState({currentColor: color.hex});
     }
-];
-const storeLines = [
-    {
-        x: 400,
-        y: 300,
-        points: [0, 0, 100, 100],
-        stroke: 'pink',
-        strokeWidth: 4,
-        id: 'line1'
+
+    render(){
+        return(
+            <div>
+                <h1>ART BOARD</h1>
+                /*<div>
+                    {
+                        this.state.shapes.map((shape) => {
+                            return(
+                                <Layer>
+                                    <Rect
+                                        key={shape.id}
+                                        id ={shape.id}
+                                        fill = {shape.fill}
+                                        x ={shape.x}
+                                        y={shape.y}
+                                        height={shape.height}
+                                        width={shape.width}
+                                    />
+                                </Layer>
+                            )
+                        })
+                     }
+                </div>*/
+                <Controls addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/>
+                <Artboard shapes={this.state.shapes}/>
+                {console.log(this.state.shapes)}
+            </div>
+        );
     }
-];*/
-const storeRectangles = [{}];
-const storeCircles = [{}];
-const storeArrows = [{}];
-const storeLines = [{}];
-
-function Artboard(props) {
-        (props.shapes.map((i) => {
-            switch (props.shapes[i]) {
-                case (props.shapes[i] === "rect"):
-                    storeRectangles.push(props.shapes[i]);
-                    break;
-                case (props.shapes[i] === "circle"):
-                    storeCircles.push(props.shapes[i]);
-                    break;
-                case (props.shapes[i] === "arrow"):
-                    storeArrows.push(props.shapes[i]);
-                    break;
-                case (props.shapes[i] === "line"):
-                    storeLines.push(props.shapes[i]);
-                    break;
-                default:
-                    return "error";
-            }
-        }));
-
-    const [rectangles, setRectangles] = React.useState(props.shapes);
-    const [circles, setCircles] = React.useState(props.shapes);
-    const [arrows, setArrows] = React.useState(props.shapes);
-    const [lines, setLines] = React.useState(props.shapes);
-    const [selectedId, selectShape] = React.useState(null);
-
-    {console.log(storeRectangles)}
-
-    return(
-        <div>
-            <Stage className = "stage" width={700} height={700} onMouseDown={e => {
-                // deselect when clicked on empty area
-                const clickedOnEmpty = e.target === e.target.getStage();
-                if (clickedOnEmpty) {
-                    selectShape(null);
-                }
-            }}>
-                <Layer>
-                    {rectangles.map((rect, i) => {
-                        return (
-                            <Rectangle
-                                key={rect.id}
-                                shapeProps={rect}
-                                isSelected={rect.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(rect.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const rects = rectangles.slice();
-                                    rects[i] = newAttrs;
-                                    setRectangles(rects);
-                                }}
-                            />
-                        );
-                    })}
-                    {circles.map((circ, i) => {
-                        return (
-                            <Circle1
-                                key={circ.id}
-                                shapeProps={circ}
-                                isSelected={circ.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(circ.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const circs = circles.slice();
-                                    circs[i] = newAttrs;
-                                    setCircles(circs);
-                                }}
-                            />
-                        );
-                    })}
-                    {arrows.map((arr, i) => {
-                        return (
-                            <Arrow1
-                                key={arr.id}
-                                shapeProps={arr}
-                                isSelected={arr.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(arr.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const arrs = arrows.slice();
-                                    arrs[i] = newAttrs;
-                                    setArrows(arrs);
-                                }}
-                            />
-                        );
-                    })}
-                    {lines.map((line, i) => {
-                        return (
-                            <Line1
-                                key={line.id}
-                                shapeProps={line}
-                                isSelected={line.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(line.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const lns = lines.slice();
-                                    lns[i] = newAttrs;
-                                    setLines(lns);
-                                }}
-                            />
-                        );
-                    })}
-                </Layer>
-            </Stage>
-        </div>
-    );
 }
 
-export default Artboard;
+export default App;
