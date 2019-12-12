@@ -18,14 +18,14 @@ class Controls extends Component{
                         <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faPlay} onClick={(event)=> this.props.addItem(event, 'tri')}/></button></li>
                         <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faCircle} onClick={(event)=> this.props.addItem(event, 'circle')}/></button></li>
                         <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faSlash} onClick={(event)=> this.props.addItem(event, 'line')}/></button></li>
-                        <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faPen} /></button></li>
-                        <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faFont} /></button></li>
+                        <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faPen}/></button></li>
+                        <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faFont} onClick={(event)=> this.props.addItem(event, 'text')}/></button></li>
                         <li className="control-item"><button><FontAwesomeIcon style = {{color: this.props.color }} icon={faImage} /></button></li>
                     </ul>
                     <CirclePicker onChange = {this.props.handleColorChange} />
                 </div>
             </div>
-            );
-            }
-            }
+        );
+    }
+}
 export default Controls;
