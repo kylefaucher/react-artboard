@@ -21,6 +21,7 @@ class App extends Component{
         this.handleColorChange = this.handleColorChange.bind(this);
     }
 
+    /* tried implementing shape filter here, but this didn't work out */
     addItem = (event, shape) => {
         this.itemID = this.itemID + 1;
         const newShape = Object.assign([], this.state.shapes)
@@ -71,6 +72,7 @@ class App extends Component{
             {shapes:newShape}
         )
     };
+
     handleColorChange(color, event) {
         this.setState({currentColor: color.hex});
     }
@@ -79,6 +81,7 @@ class App extends Component{
         return(
             <div>
                 <h1>artboard.</h1>
+                {/*ended up moving Controls.js to Artboard.js */}
                 {/* <Controls addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/> */}
                 <Artboard shapes={this.state.shapes} addItem={this.addItem} handleColorChange = {this.handleColorChange} color = {this.state.currentColor}/>
                 {console.log(this.state.shapes)}

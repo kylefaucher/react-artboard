@@ -8,12 +8,7 @@ import { CirclePicker } from 'react-color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltRight, faSquareFull, faPlay, faCircle, faPen, faSlash, faFont, faImage } from '@fortawesome/free-solid-svg-icons'
 
-/*react konva docs: https://konvajs.org/docs/react/index.html*/
-
-const storeRectangles = [{}];
-const storeCircles = [{}];
-const storeArrows = [{}];
-const storeLines = [{}];
+/* react konva docs: https://konvajs.org/docs/react/index.html */
 
 function Artboard(props) {
         // (props.shapes.map((i) => {
@@ -35,66 +30,70 @@ function Artboard(props) {
         //     }
         // }));
 
+    /* add the shapes by adding an object to the array for the shape */
     const [rectangles, setRectangles] = React.useState([]);
     const [circles, setCircles] = React.useState([]);
     const [arrows, setArrows] = React.useState([]);
     const [lines, setLines] = React.useState([]);
     const [selectedId, selectShape] = React.useState(null);
-    const [shapes, setShapes] = useState([]);
 
     function createRectangle() {
+        /* set up properties for shape */
         const rect = {
           x: 100,
           y: 100,
           width: 100,
           height: 100,
-          fill: props.color,
-          id: `rect${rectangles.length + 1}`,
+          fill: props.color, /* update color when color picker changes */
+          id: `rect${rectangles.length + 1}`, /* allows unique id for more than one of the same shape */
         };
-        const rects = rectangles.concat([rect]);
+        const rects = rectangles.concat([rect]); /* add created shape to array */
         setRectangles(rects);
       };
     
       /* referenced https://medium.com/better-programming/how-to-make-a-whiteboard-app-with-react-konva-8766a532a39f */
       function createCircle() {
+        /* set up properties for shape */
         const circ = {
           x: 100,
           y: 100,
           width: 100,
           height: 100,
-          fill: props.color,
-          id: `circ${circles.length + 1}`,
+          fill: props.color, /* update color when color picker changes */
+          id: `circ${circles.length + 1}`, /* allows unique id for more than one of the same shape */
         };
-        const circs = circles.concat([circ]);
+        const circs = circles.concat([circ]); /* add created shape to array */
         setCircles(circs);
       };
 
       function createArrow() {
+        /* set up properties for shape */
         const arr = {
           x: 100,
           y: 100,
           pointerWidth: 100,
           pointerLength: 100,
-          fill: props.color,
-          id: `arr${arrows.length + 1}`,
+          fill: props.color, /* update color when color picker changes */
+          id: `arr${arrows.length + 1}`, /* allows unique id for more than one of the same shape */
         };
-        const arrs = arrows.concat([arr]);
+        const arrs = arrows.concat([arr]); /* add created shape to array */
         setArrows(arrs);
       };
 
       function createLine() {
+        /* set up properties for shape */
         const rect = {
             x: 100,
             y: 100,
             width: 10,
             height: 100,
-            fill: props.color,
-            id: `rect${rectangles.length + 1}`,
+            fill: props.color, /* update color when color picker changes */
+            id: `rect${rectangles.length + 1}`, /* allows unique id for more than one of the same shape */
           };
-          const rects = rectangles.concat([rect]);
+          const rects = rectangles.concat([rect]); /* add created shape to array */
           setRectangles(rects);
 
-        // const line = {
+        // function createLine() {
         //   x: 200,
         //   y: 200,
         //   stroke: props.color,
@@ -151,6 +150,7 @@ function Artboard(props) {
                 }
             }}>
                 <Layer>
+                    {/* map shape to the properties specified by the object */}
                     {rectangles.map((rect, i) => {
                         return (
                             <Rectangle
@@ -158,8 +158,9 @@ function Artboard(props) {
                                 shapeProps={rect}
                                 isSelected={rect.id === selectedId}
                                 onSelect={() => {
-                                    selectShape(rect.id);
+                                    selectShape(rect.id); /* users get the ID of the selected shape when they click on the shape */
                                 }}
+                                /* update the properties of existing shape, then update corresponding array for the shapes */
                                 onChange={newAttrs => {
                                     const rects = rectangles.slice();
                                     rects[i] = newAttrs;
@@ -175,8 +176,9 @@ function Artboard(props) {
                                 shapeProps={circ}
                                 isSelected={circ.id === selectedId}
                                 onSelect={() => {
-                                    selectShape(circ.id);
+                                    selectShape(circ.id); /* users get the ID of the selected shape when they click on the shape */
                                 }}
+                                /* update the properties of existing shape, then update corresponding array for the shapes */
                                 onChange={newAttrs => {
                                     const circs = circles.slice();
                                     circs[i] = newAttrs;
@@ -192,8 +194,9 @@ function Artboard(props) {
                                 shapeProps={arr}
                                 isSelected={arr.id === selectedId}
                                 onSelect={() => {
-                                    selectShape(arr.id);
+                                    selectShape(arr.id); /* users get the ID of the selected shape when they click on the shape */
                                 }}
+                                /* update the properties of existing shape, then update corresponding array for the shapes */
                                 onChange={newAttrs => {
                                     const arrs = arrows.slice();
                                     arrs[i] = newAttrs;
@@ -209,8 +212,9 @@ function Artboard(props) {
                                 shapeProps={line}
                                 isSelected={line.id === selectedId}
                                 onSelect={() => {
-                                    selectShape(line.id);
+                                    selectShape(line.id); /* users get the ID of the selected shape when they click on the shape */
                                 }}
+                                /* update the properties of existing shape, then update corresponding array for the shapes */
                                 onChange={newAttrs => {
                                     const lns = lines.slice();
                                     lns[i] = newAttrs;
@@ -223,6 +227,9 @@ function Artboard(props) {
             </Stage>
          <div className = "downloadButtons">
           <button type = 'button' onClick = {e => {convertToImage(e) }}> Convert to PNG </button>
+        </div>
+        <div className = "sourceButtons">
+          <button type = 'button' onClick={()=> window.open("https://github.com/kylefaucher/react-artboard/tree/master", "_blank")}> GitHub </button>
         </div>
         </div>
         </React.Fragment>
